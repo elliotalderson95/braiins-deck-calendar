@@ -504,6 +504,11 @@ fn guide(view: &View<'_>, w: f32, h: f32) -> Node {
             ],
         ));
     }
+    if h >= 400.0
+        && let Some(note) = service.missing_link_note()
+    {
+        children.push(text(note, style!(size: body - 2, color: p.warn)));
+    }
     children.push(text(
         "Then add the link under Connected Accounts as a Token, and pick that account for Calendar 1 link in this widget's settings.",
         style!(size: body - 2, color: p.dim),

@@ -104,6 +104,18 @@ impl Provider {
         }
     }
 
+    /// What to try when the link isn't where the steps say it is, for a tile
+    /// with room to say so. Only some services need one.
+    #[must_use]
+    pub fn missing_link_note(self) -> Option<&'static str> {
+        match self {
+            Self::Google => Some(
+                "Not there? A work or custom domain Google account's admin has turned it off. Ask the admin, or see the README.",
+            ),
+            _ => None,
+        }
+    }
+
     /// The same steps, used when the link was copied but doesn't work.
     #[must_use]
     pub fn mistake_hint(self) -> &'static str {
@@ -131,6 +143,19 @@ mod tests {
             );
         }
         assert_eq!(Provider::from_manifest_value("yahoo"), None);
+    }
+
+    #[test]
+    fn only_google_has_a_note_for_a_missing_link_and_it_has_no_dashes() {
+        for provider in Provider::ALL {
+            match provider.missing_link_note() {
+                Some(note) => {
+                    assert_eq!(provider, Provider::Google);
+                    assert!(!note.contains('\u{2014}') && !note.contains('\u{2013}'));
+                }
+                None => assert_ne!(provider, Provider::Google),
+            }
+        }
     }
 
     #[test]

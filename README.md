@@ -54,7 +54,13 @@ archives.
      **Share Link**, Copy. On a Mac: right-click the calendar, Share Calendar, Public Calendar, Copy Link.
      The link starts with `webcal://`; change that to `https://`.
    - **Google:** calendar.google.com on a computer, Settings (the gear), the calendar under *Settings for
-     my calendars*, **Integrate calendar**, copy the **Secret address in iCal format**.
+     my calendars*, **Integrate calendar**, copy the **Secret address in iCal format**. If it isn't
+     there, the account is a Google Workspace account (work, school or your own domain) and its admin
+     has turned sharing off; accounts ending in `@gmail.com` show it. Ask the admin, or if you are the
+     admin, open the Admin console, Apps, Google Workspace, Calendar, Sharing settings, and under
+     *External sharing options for primary calendars* choose **Share all information, but outsiders
+     cannot change calendars**. It can take a few hours to appear. Don't use the *Public address in
+     iCal format* instead: it only works for a public calendar.
    - **Outlook:** Outlook on the web, Settings, Calendar, Shared calendars, **Publish a calendar**, pick
      the calendar and *Can view all details*, Publish, copy the **ICS** link. Microsoft refreshes
      published calendars only every few hours, and some work accounts can't publish.

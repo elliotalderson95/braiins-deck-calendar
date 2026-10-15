@@ -668,16 +668,17 @@ mod tests {
             .filter(|o| o.end > today_day * SECS_PER_DAY)
             .take(25)
         {
-            let date = Ymd::from_days((o.start + 7_200).div_euclid(SECS_PER_DAY));
-            let minutes = (o.start + 7_200).rem_euclid(SECS_PER_DAY) / 60;
+            let local = o.start + 7_200;
+            let day = Ymd::from_days(local.div_euclid(SECS_PER_DAY));
+            let minute_of_day = local.rem_euclid(SECS_PER_DAY) / 60;
             let when = if o.all_day {
                 "all day".to_owned()
             } else {
-                format!("{:02}:{:02}", minutes / 60, minutes % 60)
+                format!("{:02}:{:02}", minute_of_day / 60, minute_of_day % 60)
             };
             println!(
                 "  {:04}-{:02}-{:02} {when:8} {}",
-                date.year, date.month, date.day, o.title
+                day.year, day.month, day.day, o.title
             );
         }
     }
