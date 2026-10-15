@@ -1,0 +1,5 @@
+[toolchain]
+# The Rust the pinned SDK builds with (bmc-sdk/rust-toolchain.toml).
+channel = "1.97.1"
+profile = "default"
+targets = ["wasm32-unknown-unknown"]

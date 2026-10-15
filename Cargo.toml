@@ -1,0 +1,41 @@
+# The Deck Calendar widget, built against the Braiins Deck SDK checkout in
+# bmc-sdk/ (a submodule pinned to the SDK the Deck's firmware runs).
+
+[workspace]
+resolver = "3"
+members = ["deck-calendar"]
+# The SDK's crates belong to the SDK's own workspace, whose shared
+# dependency versions they inherit.
+exclude = ["bmc-sdk"]
+
+[workspace.lints.rust]
+unused_must_use = "deny"
+
+[workspace.lints.clippy]
+doc_markdown = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "warn"
+
+# Widgets are tiny wasm binaries, optimised for size like the official ones.
+[profile.dev]
+opt-level = "z"
+lto = true
+panic = "abort"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "z"
+panic = "abort"
+strip = true
+
+# A proc macro builds at opt-level 0 whatever the profile says, and the SDK's
+# asset macros do real work while expanding.
+[profile.dev.package.bmc-render-macros]
+opt-level = 3
+
+[profile.release.package.bmc-render-macros]
+opt-level = 3

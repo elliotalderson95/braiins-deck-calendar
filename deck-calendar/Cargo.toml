@@ -1,0 +1,38 @@
+[package]
+name = "deck-calendar"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-or-later"
+publish = false
+
+# `lib` beside the wasm `cdylib`, so the calendar logic tests natively.
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+bmc-wasm-sdk = { path = "../bmc-sdk/bmc-wasm-runtime/sdk" }
+
+# The Deck's widget host expands recurring events and converts timezones with
+# these crates, so the native tests use them to stand in for the host.
+[dev-dependencies]
+chrono = "0.4.41"
+chrono-tz = "0.10.3"
+rrule = "0.14.0"
+
+[lints]
+workspace = true
+
+# Development only. The desktop testbed can't save an account, so these point
+# the calendars at tools/mock-calendar.py and count them as connected.
+[features]
+preview-links = []
+preview-errors = []
+preview-failed = []
+preview-big = []
+# Draws the three smaller layouts side by side inside the full tile, which the
+# testbed shows whole.
+preview-grid = []
+# Asks for a frame after every frame, so the testbed's perf report fills up.
+preview-spin = []
+# Fuel profiling of the widget's own sections (the spans cost nothing without it).
+profiling = ["bmc-wasm-sdk/profiling"]

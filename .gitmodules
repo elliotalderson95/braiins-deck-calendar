@@ -1,0 +1,4 @@
+[submodule "bmc-sdk"]
+	path = bmc-sdk
+	url = https://github.com/BraiinsForge/bmc-main.git
+	shallow = true

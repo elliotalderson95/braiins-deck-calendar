@@ -1,0 +1,336 @@
+{
+  "$schema": "../bmc-sdk/bmc-widget-manifest/manifest.schema.json",
+  "uid": "e4006019-9b4f-4c83-b93d-71b41357b53c",
+  "version": "0.1.0",
+  "name": "Deck Calendar",
+  "subname": "Your events at a glance",
+  "description": "Your Apple, Google or Outlook calendar on the Deck: the month, and what is on today and next",
+  "config_help": "Shows your calendars: a month view, and what is on today and next. Tap a day to see its events.\n\n**Connecting a calendar** takes about two minutes:\n\n1. Get the calendar's private link from its service. Pick the service below and the Deck's screen lists the steps until the calendar is connected.\n2. Open **Connected Accounts**, choose **Add New Account**, keep the type **Token**, name it (say \"Apple calendar\") and paste the link as the token. A link that starts with webcal:// must start with https:// instead.\n3. Here, pick the service, then pick that account for **Calendar 1 link**.\n\nThe link works like a password for reading that calendar, which is why it is kept as an account and not in these settings. Calendars 2 and 3 are for more calendars.\n\nThe widget only reads; it can't change your events. It checks for changes every 15 minutes unless you say otherwise, and keeps showing the last events it got when the Deck is offline. Outlook publishes changes to its links only every few hours.",
+  "binary": "bin/deck-calendar",
+  "icon": "assets/icon.svg",
+  "category": "calendar",
+  "settings": [
+    "timezone"
+  ],
+  "supported_viewports": [
+    {
+      "type": "rectangular",
+      "min_width": 317,
+      "min_height": 238
+    }
+  ],
+  "params": {
+    "calendar_1_provider": {
+      "name": "Calendar 1 service",
+      "description": "Where the first calendar lives",
+      "type": "string",
+      "default_value": "apple",
+      "enum_values": [
+        {
+          "value": "apple",
+          "label": "Apple Calendar (iCloud)"
+        },
+        {
+          "value": "google",
+          "label": "Google Calendar"
+        },
+        {
+          "value": "outlook",
+          "label": "Outlook (Outlook.com or Microsoft 365)"
+        },
+        {
+          "value": "proton",
+          "label": "Proton Calendar"
+        },
+        {
+          "value": "fastmail",
+          "label": "Fastmail"
+        },
+        {
+          "value": "nextcloud",
+          "label": "Nextcloud"
+        },
+        {
+          "value": "other",
+          "label": "Other (any iCalendar link)"
+        }
+      ],
+      "optional": true
+    },
+    "calendar_1_name": {
+      "name": "Calendar 1 name",
+      "description": "Shown with its events. Leave empty to use the calendar's own name",
+      "type": "string",
+      "optional": true
+    },
+    "calendar_1_color": {
+      "name": "Calendar 1 colour",
+      "type": "string",
+      "default_value": "blue",
+      "enum_values": [
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "orange",
+          "label": "Orange"
+        },
+        {
+          "value": "green",
+          "label": "Green"
+        },
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "purple",
+          "label": "Purple"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "pink",
+          "label": "Pink"
+        },
+        {
+          "value": "gray",
+          "label": "Gray"
+        }
+      ],
+      "optional": true
+    },
+    "calendar_2_provider": {
+      "name": "Calendar 2 service",
+      "description": "Only used once an account is picked for Calendar 2 link",
+      "type": "string",
+      "default_value": "google",
+      "enum_values": [
+        {
+          "value": "apple",
+          "label": "Apple Calendar (iCloud)"
+        },
+        {
+          "value": "google",
+          "label": "Google Calendar"
+        },
+        {
+          "value": "outlook",
+          "label": "Outlook (Outlook.com or Microsoft 365)"
+        },
+        {
+          "value": "proton",
+          "label": "Proton Calendar"
+        },
+        {
+          "value": "fastmail",
+          "label": "Fastmail"
+        },
+        {
+          "value": "nextcloud",
+          "label": "Nextcloud"
+        },
+        {
+          "value": "other",
+          "label": "Other (any iCalendar link)"
+        }
+      ],
+      "optional": true
+    },
+    "calendar_2_name": {
+      "name": "Calendar 2 name",
+      "type": "string",
+      "optional": true
+    },
+    "calendar_2_color": {
+      "name": "Calendar 2 colour",
+      "type": "string",
+      "default_value": "orange",
+      "enum_values": [
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "orange",
+          "label": "Orange"
+        },
+        {
+          "value": "green",
+          "label": "Green"
+        },
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "purple",
+          "label": "Purple"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "pink",
+          "label": "Pink"
+        },
+        {
+          "value": "gray",
+          "label": "Gray"
+        }
+      ],
+      "optional": true
+    },
+    "calendar_3_provider": {
+      "name": "Calendar 3 service",
+      "description": "Only used once an account is picked for Calendar 3 link",
+      "type": "string",
+      "default_value": "outlook",
+      "enum_values": [
+        {
+          "value": "apple",
+          "label": "Apple Calendar (iCloud)"
+        },
+        {
+          "value": "google",
+          "label": "Google Calendar"
+        },
+        {
+          "value": "outlook",
+          "label": "Outlook (Outlook.com or Microsoft 365)"
+        },
+        {
+          "value": "proton",
+          "label": "Proton Calendar"
+        },
+        {
+          "value": "fastmail",
+          "label": "Fastmail"
+        },
+        {
+          "value": "nextcloud",
+          "label": "Nextcloud"
+        },
+        {
+          "value": "other",
+          "label": "Other (any iCalendar link)"
+        }
+      ],
+      "optional": true
+    },
+    "calendar_3_name": {
+      "name": "Calendar 3 name",
+      "type": "string",
+      "optional": true
+    },
+    "calendar_3_color": {
+      "name": "Calendar 3 colour",
+      "type": "string",
+      "default_value": "green",
+      "enum_values": [
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "orange",
+          "label": "Orange"
+        },
+        {
+          "value": "green",
+          "label": "Green"
+        },
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "purple",
+          "label": "Purple"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "pink",
+          "label": "Pink"
+        },
+        {
+          "value": "gray",
+          "label": "Gray"
+        }
+      ],
+      "optional": true
+    },
+    "theme": {
+      "name": "Look",
+      "type": "string",
+      "default_value": "dark",
+      "enum_values": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "night",
+          "label": "Light by day, dark at night"
+        }
+      ],
+      "optional": true
+    },
+    "refresh": {
+      "name": "Check for changes",
+      "description": "How often the widget asks the calendars for news",
+      "type": "string",
+      "default_value": "15",
+      "enum_values": [
+        {
+          "value": "5",
+          "label": "Every 5 minutes"
+        },
+        {
+          "value": "15",
+          "label": "Every 15 minutes"
+        },
+        {
+          "value": "30",
+          "label": "Every 30 minutes"
+        },
+        {
+          "value": "60",
+          "label": "Every hour"
+        }
+      ],
+      "optional": true
+    }
+  },
+  "credentials": {
+    "calendar_1_link": {
+      "type": "generic-token",
+      "label": "Calendar 1 link",
+      "description": "The calendar's private link, saved as a Token account. It starts with https://",
+      "required": false
+    },
+    "calendar_2_link": {
+      "type": "generic-token",
+      "label": "Calendar 2 link",
+      "description": "Optional. A second calendar's private link, saved as a Token account",
+      "required": false
+    },
+    "calendar_3_link": {
+      "type": "generic-token",
+      "label": "Calendar 3 link",
+      "description": "Optional. A third calendar's private link, saved as a Token account",
+      "required": false
+    }
+  }
+}
